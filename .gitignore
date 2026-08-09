@@ -1,0 +1,35 @@
+# Dependencies and test output
+node_modules/
+coverage/
+*.log
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.har
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local exports and private working data
+exports/
+downloads/
+chat_exports/
+exported-conversations/
+private/
+/*.integrity.txt
+/chat_*.json
+/chat_*.md
+/* \[????????\].json
+/* \[????????\].md
+
+# Archives and backups
+*.zip
+*.bak
+*.tmp
+*~
+
