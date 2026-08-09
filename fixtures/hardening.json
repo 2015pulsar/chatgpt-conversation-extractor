@@ -1,0 +1,48 @@
+{
+  "internalRecipient": {
+    "title": "Internal recipient",
+    "current_node": "final",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["user"], "message": null },
+      "user": { "id": "user", "parent": "root", "children": ["internal"], "message": { "id": "mu", "author": { "role": "user" }, "content": { "content_type": "text", "parts": ["Search for this"] }, "metadata": {} } },
+      "internal": { "id": "internal", "parent": "user", "children": ["tool"], "message": { "id": "mi", "author": { "role": "assistant" }, "recipient": "browser", "content": { "content_type": "text", "parts": ["INTERNAL BROWSER COMMAND"] }, "metadata": {} } },
+      "tool": { "id": "tool", "parent": "internal", "children": ["final"], "message": { "id": "mt", "author": { "role": "tool" }, "content": { "content_type": "text", "parts": ["TOOL RESULT"] }, "metadata": {} } },
+      "final": { "id": "final", "parent": "tool", "children": [], "message": { "id": "mf", "author": { "role": "assistant" }, "recipient": "all", "content": { "content_type": "text", "parts": ["VISIBLE FINAL ANSWER"] }, "metadata": {} } }
+    }
+  },
+  "reasoning": {
+    "title": "Reasoning nodes",
+    "current_node": "final",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["user"], "message": null },
+      "user": { "id": "user", "parent": "root", "children": ["thoughts"], "message": { "id": "mu", "author": { "role": "user" }, "content": { "content_type": "text", "parts": ["Solve it"] }, "metadata": {} } },
+      "thoughts": { "id": "thoughts", "parent": "user", "children": ["recap"], "message": { "id": "mth", "author": { "role": "assistant" }, "recipient": "all", "content": { "content_type": "thoughts", "parts": ["PRIVATE THOUGHTS"] }, "metadata": {} } },
+      "recap": { "id": "recap", "parent": "thoughts", "children": ["final"], "message": { "id": "mrc", "author": { "role": "assistant" }, "recipient": "all", "content": { "content_type": "reasoning_recap", "parts": ["PRIVATE REASONING RECAP"] }, "metadata": {} } },
+      "final": { "id": "final", "parent": "recap", "children": [], "message": { "id": "mf", "author": { "role": "assistant" }, "recipient": "all", "content": { "content_type": "text", "parts": ["PUBLIC RESULT"] }, "metadata": {} } }
+    }
+  },
+  "duplicateSediment": {
+    "title": "Duplicate sediment attachment",
+    "current_node": "user",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["user"], "message": null },
+      "user": { "id": "user", "parent": "root", "children": [], "message": { "id": "mu", "author": { "role": "user" }, "content": { "content_type": "multimodal_text", "parts": ["See attachment", { "content_type": "file_asset_pointer", "asset_pointer": "sediment://file_example_123" }] }, "metadata": { "attachments": [{ "id": "file_example_123", "name": "example.zip", "mime_type": "application/zip" }] } } }
+    }
+  },
+  "duplicateFileService": {
+    "title": "Duplicate file service attachment",
+    "current_node": "user",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["user"], "message": null },
+      "user": { "id": "user", "parent": "root", "children": [], "message": { "id": "mu", "author": { "role": "user" }, "content": { "content_type": "multimodal_text", "parts": ["See attachment", { "content_type": "file_asset_pointer", "asset_pointer": "file-service://file_example_123" }] }, "metadata": { "attachments": [{ "id": "file_example_123", "name": "example-archive.zip", "mime_type": "application/zip" }] } } }
+    }
+  },
+  "knownImage": {
+    "title": "Known image",
+    "current_node": "user",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["user"], "message": null },
+      "user": { "id": "user", "parent": "root", "children": [], "message": { "id": "mu", "author": { "role": "user" }, "content": { "content_type": "multimodal_text", "parts": ["Describe this image", { "content_type": "image_asset_pointer", "asset_pointer": "sediment://image_456", "size_bytes": 1234 }] }, "metadata": {} } }
+    }
+  }
+}

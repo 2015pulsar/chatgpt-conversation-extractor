@@ -1,0 +1,101 @@
+{
+  "linear": {
+    "title": "Linear chat",
+    "current_node": "a1",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["u1"], "message": null },
+      "u1": {
+        "id": "u1", "parent": "root", "children": ["a1"],
+        "message": { "id": "m-u1", "author": { "role": "user" }, "create_time": 1786279632, "content": { "content_type": "text", "parts": ["Hello"] }, "metadata": {} }
+      },
+      "a1": {
+        "id": "a1", "parent": "u1", "children": [],
+        "message": { "id": "m-a1", "author": { "role": "assistant" }, "create_time": 1786279681, "content": { "content_type": "text", "parts": ["Hi there"] }, "metadata": {} }
+      }
+    }
+  },
+  "regenerate": {
+    "title": "Regenerated answer",
+    "current_node": "a-new",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["u1"], "message": null },
+      "u1": {
+        "id": "u1", "parent": "root", "children": ["a-old", "a-new"],
+        "message": { "id": "m-u1", "author": { "role": "user" }, "content": { "parts": ["Give me an answer"] }, "metadata": {} }
+      },
+      "a-old": {
+        "id": "a-old", "parent": "u1", "children": [],
+        "message": { "id": "m-old", "author": { "role": "assistant" }, "content": { "parts": ["OLD BRANCH ANSWER"] }, "metadata": {} }
+      },
+      "a-new": {
+        "id": "a-new", "parent": "u1", "children": [],
+        "message": { "id": "m-new", "author": { "role": "assistant" }, "content": { "parts": ["NEW ACTIVE ANSWER"] }, "metadata": {} }
+      }
+    }
+  },
+  "attachment": {
+    "title": "Attachment chat",
+    "current_node": "a1",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["u1"], "message": null },
+      "u1": {
+        "id": "u1", "parent": "root", "children": ["a1"],
+        "message": {
+          "id": "m-u1", "author": { "role": "user" }, "content": { "parts": ["Inspect this repository."] },
+          "metadata": { "attachments": [{ "id": "file-example-123", "name": "example.zip", "mime_type": "application/zip" }] }
+        }
+      },
+      "a1": {
+        "id": "a1", "parent": "u1", "children": [],
+        "message": { "id": "m-a1", "author": { "role": "assistant" }, "content": { "parts": ["Done."] }, "metadata": {} }
+      }
+    }
+  },
+  "missingParent": {
+    "title": "Broken chat",
+    "current_node": "a1",
+    "mapping": {
+      "a1": {
+        "id": "a1", "parent": "missing-node", "children": [],
+        "message": { "id": "m-a1", "author": { "role": "assistant" }, "content": { "parts": ["Partial"] }, "metadata": {} }
+      }
+    }
+  },
+  "cycle": {
+    "title": "Cycle chat",
+    "current_node": "a",
+    "mapping": {
+      "a": { "id": "a", "parent": "b", "children": ["b"], "message": { "id": "ma", "author": { "role": "user" }, "content": { "parts": ["A"] }, "metadata": {} } },
+      "b": { "id": "b", "parent": "a", "children": ["a"], "message": { "id": "mb", "author": { "role": "assistant" }, "content": { "parts": ["B"] }, "metadata": {} } }
+    }
+  },
+  "unicode": {
+    "title": "Кириллица и 日本語",
+    "current_node": "a1",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["u1"], "message": null },
+      "u1": { "id": "u1", "parent": "root", "children": ["a1"], "message": { "id": "mu", "author": { "role": "user" }, "content": { "parts": ["Привет, мир! 👋"] }, "metadata": {} } },
+      "a1": { "id": "a1", "parent": "u1", "children": [], "message": { "id": "ma", "author": { "role": "assistant" }, "content": { "parts": ["Здравствуйте — всё работает."] }, "metadata": {} } }
+    }
+  },
+  "unknownPart": {
+    "title": "Unknown content",
+    "current_node": "a1",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["u1"], "message": null },
+      "u1": { "id": "u1", "parent": "root", "children": ["a1"], "message": { "id": "mu", "author": { "role": "user" }, "content": { "parts": ["Show a widget"] }, "metadata": {} } },
+      "a1": { "id": "a1", "parent": "u1", "children": [], "message": { "id": "ma", "author": { "role": "assistant" }, "content": { "content_type": "multimodal_text", "parts": [{ "content_type": "text", "text": "Visible text" }, { "content_type": "future_widget", "payload": { "x": 1 } }] }, "metadata": {} } }
+    }
+  },
+  "structuralHidden": {
+    "title": "Technical nodes",
+    "current_node": "a1",
+    "mapping": {
+      "root": { "id": "root", "parent": null, "children": ["system"], "message": null },
+      "system": { "id": "system", "parent": "root", "children": ["u1"], "message": { "id": "ms", "author": { "role": "system" }, "content": { "parts": ["Hidden system"] }, "metadata": {} } },
+      "u1": { "id": "u1", "parent": "system", "children": ["tool"], "message": { "id": "mu", "author": { "role": "user" }, "content": { "parts": ["Visible user"] }, "metadata": {} } },
+      "tool": { "id": "tool", "parent": "u1", "children": ["a1"], "message": { "id": "mt", "author": { "role": "tool" }, "content": { "parts": ["Hidden tool"] }, "metadata": {} } },
+      "a1": { "id": "a1", "parent": "tool", "children": [], "message": { "id": "ma", "author": { "role": "assistant" }, "content": { "parts": ["Visible assistant"] }, "metadata": {} } }
+    }
+  }
+}
