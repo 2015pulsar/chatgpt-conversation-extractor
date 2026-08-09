@@ -3,10 +3,25 @@
 ## Export chat button does not appear
 
 - Confirm that the userscript is enabled in Violentmonkey.
-- Refresh ChatGPT after installing or updating the script.
+- Refresh ChatGPT after installing, updating, enabling, or disabling the script.
 - Confirm that the URL is an actual conversation route containing `/c/...`.
 - Open an existing conversation rather than the New Chat screen.
 - On a very narrow window there may not be enough safe space to place the button to the left of the composer; widen the window.
+
+## Chrome shows the script crossed out
+
+Chrome requires explicit permission for Violentmonkey to run userscripts:
+
+1. Open `chrome://extensions`.
+2. Find **Violentmonkey** and open **Details**.
+3. Set **Allow User Scripts** to **ON**.
+4. Return to ChatGPT and refresh the page.
+
+When this permission is off, the script may appear crossed out in Violentmonkey and **Export chat** will not be injected.
+
+## Violentmonkey reports a name/namespace conflict
+
+Another copy of ChatGPT Conversation Extractor is already installed. Delete the duplicate copy or update the existing installed script instead of installing a second copy with the same name and namespace.
 
 ## I enabled or disabled the script, but the button did not change
 

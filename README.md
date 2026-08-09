@@ -4,13 +4,27 @@
 
 A small browser userscript for exporting the current active branch of a ChatGPT conversation without relying on Ctrl+A / Ctrl+C, DOM transcript scraping, scrolling, or Print/PDF.
 
+[Download userscript](https://github.com/2015pulsar/chatgpt-conversation-extractor/releases/download/v0.2.0/chatgpt-conversation-extractor.user.js)
+
+[Open v0.2.0 pre-release](https://github.com/2015pulsar/chatgpt-conversation-extractor/releases/tag/v0.2.0)
+
 Some users of very long ChatGPT conversations have reported incomplete copy/export behavior and other long-conversation issues. This project is a practical workaround for users who need a structured local export of one current conversation.
 
 > **Unofficial project:** This project is not affiliated with or endorsed by OpenAI. It uses internal, undocumented ChatGPT web endpoints that may change at any time.
 
-- Version: **0.2.0 public release candidate**
+- Version: **0.2.0 public pre-release**
 - Last tested: **2026-08-09**
 - Scope: one conversation currently open on `https://chatgpt.com/`
+
+## What it looks like
+
+The **Export chat** button beside the ChatGPT composer:
+
+<img src="https://github.com/user-attachments/assets/6a87020b-affb-4b57-9e61-48dc4231fce0" alt="Export chat button beside the ChatGPT composer" width="760">
+
+The result panel after a successful export:
+
+<img src="https://github.com/user-attachments/assets/312c7211-6b9b-4738-9890-a96ac020bb6f" alt="Successful ChatGPT conversation export result" width="760">
 
 ## What it exports
 
@@ -36,9 +50,9 @@ The raw conversation JSON returned by ChatGPT. It may contain considerably more 
 - message IDs and parent/child relationships;
 - timestamps and metadata;
 - attachment IDs, filenames, and MIME information;
-- internal tool-call and tool-result nodes;
-- search and file-processing results;
-- portions of file text if ChatGPT previously loaded that text into a tool result;
+- reasoning-related recap or metadata actually returned by ChatGPT;
+- internal tool calls and tool results, including search and file-processing results;
+- text fragments if ChatGPT previously loaded them into a tool result;
 - other backend metadata returned by ChatGPT.
 
 Raw JSON is **not a backup of the original uploaded files**. Images, ZIP files, and other binary attachments are not bundled into the JSON merely because they were attached to the conversation. The JSON may contain reasoning-related metadata or recap/internal nodes returned by ChatGPT; it is not marketed as a guaranteed export of a private hidden chain of thought.
@@ -61,7 +75,7 @@ The number of Assistant messages does not have to equal the number of User messa
 
 ## Installation for beginners
 
-The primary, physically tested installation route is **Violentmonkey**. Violentmonkey is a browser extension/userscript manager that runs small user scripts on selected websites.
+The primary, physically tested installation route is **Violentmonkey**. The current pre-release was physically tested on Windows desktop with both **Firefox + Violentmonkey** and **Chrome + Violentmonkey**. Violentmonkey is a browser extension/userscript manager that runs small user scripts on selected websites.
 
 1. Install Violentmonkey from the official browser extension store.
 2. Open Violentmonkey.
@@ -76,6 +90,19 @@ The primary, physically tested installation route is **Violentmonkey**. Violentm
 11. Find the **Export chat** button to the left of the message composer.
 
 If you enable or disable the userscript while ChatGPT is already open, refresh the ChatGPT page for the change to take effect.
+
+### Required Chrome permission
+
+Chrome requires an additional permission before Violentmonkey can run userscripts:
+
+1. Open `chrome://extensions`.
+2. Find **Violentmonkey** and open **Details**.
+3. Set **Allow User Scripts** to **ON**.
+4. Refresh the ChatGPT page.
+
+If this permission is off, Chrome may show the installed script crossed out in Violentmonkey and the **Export chat** button will not appear.
+
+If Violentmonkey reports a name/namespace conflict during installation, another copy of ChatGPT Conversation Extractor is already installed. Delete the duplicate copy or update the existing installed script instead of creating a second copy.
 
 Tampermonkey is expected to be compatible with the standard userscript metadata and browser APIs used here, but it has not been physically verified by the project owner.
 
@@ -121,6 +148,10 @@ See also:
 - [Troubleshooting](TROUBLESHOOTING.md)
 - [Compatibility](COMPATIBILITY.md)
 - [Changelog](CHANGELOG.md)
+
+## Release integrity files
+
+`PUBLIC_RELEASE_MANIFEST.json` and `SHA256SUMS.txt` apply to the package published with the **v0.2.0 pre-release**. Documentation on the `main` branch may receive documentation-only corrections without changing the published runtime asset or its release checksums.
 
 ## License
 

@@ -1,16 +1,17 @@
 # Compatibility
 
 Last tested: **2026-08-09**  
-Release candidate: **0.2.0**
+Public pre-release: **0.2.0**
 
 ## Physically exercised environment
 
 - Windows desktop.
-- Firefox on Windows.
-- Violentmonkey.
+- Firefox + Violentmonkey on Windows.
+- Chrome + Violentmonkey on Windows.
 - Real export of a small ChatGPT conversation.
 - Real export of a large ChatGPT conversation with more than one thousand mapping nodes.
 - Expanded and collapsed ChatGPT sidebar states.
+- Conversations with attachments.
 
 ## Userscript manager
 
@@ -20,7 +21,7 @@ Tampermonkey is expected to be compatible with the standard userscript metadata 
 
 ## macOS and Linux
 
-The userscript is browser JavaScript and has no intended Windows filesystem or native-runtime dependency. It is therefore expected to work through a compatible browser/userscript manager on macOS and Linux, but the project owner has not yet physically verified this release candidate on a Mac or Linux machine.
+The userscript is browser JavaScript and has no intended Windows filesystem or native-runtime dependency. Its browser architecture is therefore expected to work through a compatible browser/userscript manager on macOS and Linux, but the project owner has not physically verified version 0.2.0 on either operating system.
 
 ## Browsers
 
