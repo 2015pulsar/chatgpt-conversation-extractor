@@ -160,7 +160,7 @@ ChatGPT Conversation Extractor is free and open source.
 If this project saves you time or helps you continue a long ChatGPT project, you can support future updates and other free tools:
 
 - [International support](https://dalink.to/2015pulsar)
-- [Support from Russia]([https://pay.cloudtips.ru/p/4be3af8a)
+- [Support from Russia](https://pay.cloudtips.ru/p/4be3af8a)
 
 Donations are completely optional. They do not unlock any software, features, services, or private content.
 
